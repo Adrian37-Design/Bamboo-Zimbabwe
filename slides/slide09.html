@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>6. Requested Recognition</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;700;900&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#0F3823",
+                        "on-primary": "#FFFFFF",
+                        "primary-container": "#D2E8D1",
+                        "on-primary-container": "#002111",
+                        "surface": "#FDFDFD",
+                        "on-surface": "#191C1A",
+                        "surface-variant": "#DEE5DE",
+                        "on-surface-variant": "#424942",
+                        "outline": "#727972",
+                        "outline-variant": "#C2C9C1",
+                        "surface-container-low": "#F1F5F1",
+                        "surface-container-high": "#E5EAE5",
+                        "surface-container-highest": "#DFE4DF"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    fontFamily: {
+                        headline: ["Public Sans", "sans-serif"],
+                        display: ["Public Sans", "sans-serif"],
+                        body: ["Inter", "sans-serif"],
+                        label: ["Public Sans", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .step-connector {
+            background-image: radial-gradient(#0F3823 1px, transparent 1px);
+            background-size: 12px 12px;
+        }
+    </style>
+
+  <style>
+    /* Hide Stitch default navigation and page framing elements */
+    nav, aside, header, footer { display: none !important; }
+    /* Reset main margins and layout to make it full screen inside presentation player */
+    main {
+      margin-left: 0 !important;
+      margin-top: 0 !important;
+      padding: 0 !important;
+      min-height: 100vh !important;
+    }
+    /* Hide scrollbars */
+    body {
+      overflow: hidden !important;
+      scrollbar-width: none !important;
+      -ms-overflow-style: none !important;
+    }
+    body::-webkit-scrollbar {
+      display: none !important;
+    }
+  </style>
+
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary/20">
+<!-- SideNavBar (Authority Source: JSON) -->
+<aside class="hidden md:flex flex-col h-screen w-72 fixed left-0 top-0 bg-surface-container-low dark:bg-surface-container-lowest border-r border-outline-variant/50 p-4 gap-2 z-40">
+<div class="mb-8 px-4">
+<h2 class="font-display font-bold text-primary dark:text-primary-fixed text-xl">Country Report 2024</h2>
+<p class="text-xs text-on-surface-variant/70 uppercase tracking-widest font-label mt-1">Sustainable Growth Strategy</p>
+</div>
+<nav class="flex-1 space-y-1">
+<div class="flex items-center p-3 gap-3 cursor-pointer select-none text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high rounded-lg hover:translate-x-1 transition-transform duration-200">
+<span class="material-symbols-outlined">menu_book</span>
+<span class="font-label text-sm tracking-normal">Cover Slide</span>
+</div>
+<div class="flex items-center p-3 gap-3 cursor-pointer select-none text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high rounded-lg hover:translate-x-1 transition-transform duration-200">
+<span class="material-symbols-outlined">summarize</span>
+<span class="font-label text-sm tracking-normal">Executive Summary</span>
+</div>
+<div class="flex items-center p-3 gap-3 cursor-pointer select-none text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high rounded-lg hover:translate-x-1 transition-transform duration-200">
+<span class="material-symbols-outlined">trending_up</span>
+<span class="font-label text-sm tracking-normal">Macroeconomic Outlook</span>
+</div>
+<!-- ACTIVE TAB: The Bamboo Sector -->
+<div class="flex items-center p-3 gap-3 cursor-pointer select-none bg-primary/10 dark:bg-primary-fixed/20 text-primary dark:text-primary-fixed font-bold rounded-lg hover:translate-x-1 transition-transform duration-200">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">forest</span>
+<span class="font-label text-sm tracking-normal">The Bamboo Sector</span>
+</div>
+<div class="flex items-center p-3 gap-3 cursor-pointer select-none text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high rounded-lg hover:translate-x-1 transition-transform duration-200">
+<span class="material-symbols-outlined">psychology</span>
+<span class="font-label text-sm tracking-normal">Strategic Initiatives</span>
+</div>
+<div class="flex items-center p-3 gap-3 cursor-pointer select-none text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high rounded-lg hover:translate-x-1 transition-transform duration-200">
+<span class="material-symbols-outlined">list_alt</span>
+<span class="font-label text-sm tracking-normal">Appendix</span>
+</div>
+</nav>
+<div class="mt-auto space-y-1 pt-4 border-t border-outline-variant/30">
+<div class="flex items-center p-3 gap-3 cursor-pointer select-none text-on-surface-variant/80 hover:bg-surface-container-high rounded-lg">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label text-sm">Settings</span>
+</div>
+<button class="w-full mt-4 bg-primary text-on-primary py-3 px-4 rounded-xl font-label text-sm font-bold flex items-center justify-center gap-2 hover:opacity-90 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-sm">download</span>
+                Download Full PDF
+            </button>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="md:ml-72 min-h-screen flex flex-col">
+<!-- TopNavBar (Authority Source: JSON) -->
+<header class="bg-white/95 dark:bg-surface-container-high/95 border-b border-outline-variant dark:border-outline-variant/30 shadow-sm sticky top-0 z-50">
+<div class="flex justify-between items-center w-full px-6 py-4 max-w-screen-2xl mx-auto">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-display font-black uppercase tracking-tighter text-primary">Bamboo Zimbabwe</span>
+<nav class="hidden lg:flex items-center gap-6">
+<a class="text-on-surface-variant/80 hover:text-primary transition-colors font-headline text-label-md font-medium tracking-wide" href="#">Overview</a>
+<a class="text-on-surface-variant/80 hover:text-primary transition-colors font-headline text-label-md font-medium tracking-wide" href="#">Economy</a>
+<a class="text-on-surface-variant/80 hover:text-primary transition-colors font-headline text-label-md font-medium tracking-wide" href="#">Environment</a>
+<a class="text-primary border-b-2 border-primary pb-1 font-headline text-label-md font-medium tracking-wide" href="#">Trade</a>
+<a class="text-on-surface-variant/80 hover:text-primary transition-colors font-headline text-label-md font-medium tracking-wide" href="#">Resources</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center bg-surface-container-high px-3 py-1.5 rounded-full border border-outline-variant/50">
+<span class="material-symbols-outlined text-on-surface-variant text-lg">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm px-2 w-48" placeholder="Search report..." type="text"/>
+</div>
+<div class="flex gap-2">
+<button class="p-2 hover:bg-surface-container-lowest transition-all rounded-full active:scale-95 text-on-surface-variant">
+<span class="material-symbols-outlined">download</span>
+</button>
+<button class="p-2 hover:bg-surface-container-lowest transition-all rounded-full active:scale-95 text-on-surface-variant">
+<span class="material-symbols-outlined">share</span>
+</button>
+</div>
+</div>
+</div>
+</header>
+<!-- Presentation Slide Content -->
+<section class="flex-1 p-8 lg:p-12 max-w-7xl mx-auto w-full">
+<!-- Header Section -->
+<div class="mb-16">
+<div class="inline-flex items-center gap-2 px-3 py-1 bg-primary/5 rounded-full text-primary font-bold text-xs tracking-widest uppercase mb-4">
+<span class="material-symbols-outlined text-sm">account_tree</span>
+                    Strategic Framework
+                </div>
+<h1 class="text-5xl font-display font-black text-on-surface tracking-tight leading-tight">
+                    ABC Bamboo Sector <br/><span class="text-primary">Transformation Model</span>
+</h1>
+<p class="mt-4 text-on-surface-variant text-lg max-w-2xl leading-relaxed">
+                    Bamboo Zimbabwe seeks to be formally appointed as the National Bamboo Ambassador for Zimbabwe by INBAR and ICBR.
+                </p>
+</div>
+<!-- Flow Diagram Container -->
+<div class="relative grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+<!-- Connector Line (Background SVG) -->
+<div class="hidden md:block absolute top-1/2 left-0 w-full h-0.5 -translate-y-1/2 -z-10 bg-outline-variant"></div>
+<!-- Mandate 1: Anchor -->
+<div class="group relative bg-white border border-outline-variant/40 rounded-[2rem] p-8 shadow-xl shadow-primary/5 hover:shadow-2xl transition-all duration-500 flex flex-col h-full">
+<div class="absolute -top-6 left-8 w-14 h-14 bg-primary text-on-primary rounded-2xl flex items-center justify-center font-display text-2xl font-black shadow-lg shadow-primary/20 transform group-hover:rotate-6 transition-transform">
+                        A
+                    </div>
+<div class="mt-4">
+<h3 class="text-sm font-bold text-primary tracking-widest uppercase mb-2">Primary Liaison</h3>
+<h2 class="text-2xl font-display font-bold text-on-surface mb-6">Bamboo Resource Development</h2>
+<div class="space-y-4">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary mt-1">potted_plant</span>
+<div>
+<p class="text-on-surface font-semibold text-sm">Government Relations</p>
+<p class="text-on-surface-variant text-xs mt-1 leading-relaxed">Serve as the primary liaison with the Zimbabwean government.</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary mt-1">hub</span>
+<div>
+<p class="text-on-surface font-semibold text-sm">Pilot Implementation</p>
+<p class="text-on-surface-variant text-xs mt-1 leading-relaxed">Implement curated bamboo pilots demonstrating tangible impacts.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-12 overflow-hidden rounded-xl h-40 relative">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="A lush, dense bamboo forest in Zimbabwe during the golden hour. The soft morning sunlight filters through the tall, vibrant green bamboo stalks, creating a serene and productive atmosphere. This image represents sustainable resource development and environmental conservation within a professional, high-end agricultural report context." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEpGcUyg6vnLI1W_GI7aABamm1WvtNgEnLRKndiadBqriMTHR64NY_QoR3DCVCgnmtAjs53eeUiWD0qDSpn8EwvAzZZH78lBeTCPUfqbZJ4z5z2gAQWDvHYM_ziYu9p-4TQBU7tqqU1SSXsZJUVIT5C6C-8mS6u5dMr68RdKWbWmjo0IQujqCFTNZ41BH0hsd54pLlaBMEhm6iOp8BoaoxU_VP_mNOvVgSvOCHTp2mGZoypzpwXeA3mheGbyI0FCl7UiJp7zautA"/>
+</div>
+<!-- Flow Arrow Mobile -->
+<div class="md:hidden flex justify-center mt-8">
+<span class="material-symbols-outlined text-primary animate-bounce">arrow_downward</span>
+</div>
+</div>
+<!-- Mandate 2: Business -->
+<div class="group relative bg-white border border-outline-variant/40 rounded-[2rem] p-8 shadow-xl shadow-primary/5 hover:shadow-2xl transition-all duration-500 flex flex-col h-full border-t-4 border-t-primary">
+<div class="absolute -top-6 left-8 w-14 h-14 bg-primary text-on-primary rounded-2xl flex items-center justify-center font-display text-2xl font-black shadow-lg shadow-primary/20 transform group-hover:-rotate-6 transition-transform">
+                        B
+                    </div>
+<div class="mt-4">
+<h3 class="text-sm font-bold text-primary tracking-widest uppercase mb-2">Investment Coordination</h3>
+<h2 class="text-2xl font-display font-bold text-on-surface mb-6">Value Addition &amp; Enterprise</h2>
+<div class="space-y-4">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary mt-1">factory</span>
+<div>
+<p class="text-on-surface font-semibold text-sm">Resource Mobilization</p>
+<p class="text-on-surface-variant text-xs mt-1 leading-relaxed">Mobilize and coordinate investments and partnerships.</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary mt-1">eco</span>
+<div>
+<p class="text-on-surface font-semibold text-sm">Strengthen Collaboration</p>
+<p class="text-on-surface-variant text-xs mt-1 leading-relaxed">Report outcomes to INBAR and ICBR to strengthen collaboration.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-12 overflow-hidden rounded-xl h-40 relative">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="A modern, high-tech manufacturing facility showing precision-cut bamboo panels being prepared for furniture production. The lighting is clean and industrial, highlighting the sleek texture of the bamboo products. The environment suggests innovation, efficiency, and professional enterprise within a modern African industrial setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAur1HnNpSfyiyzU_OSxRGD6dACS8rrW592gNchkA33sAeOEYbXUhuh-fxyD3H3Km7RqaGdgTuDhDO8rHys5FQaOraXP2M0cRdbCNx6SS05MGntQ6PYB2-ZKrOsv4MEtVfmQUVYrM9qzNFBeHEJk0InbG12XcXqpmNQlel-gYv6Op5qXJ0SLntfb2aQ7PHuGtj48VX2PUPp7F1xYZSpFc8pc6Xwgty_iEt1lKJQIgVCKU_HZXq5hU1RTOrdZUwFRH2JL_1hCrRscg"/>
+</div>
+<!-- Flow Arrow Mobile -->
+<div class="md:hidden flex justify-center mt-8">
+<span class="material-symbols-outlined text-primary animate-bounce">arrow_downward</span>
+</div>
+</div>
+<!-- Stage C: Community -->
+<div class="group relative bg-white border border-outline-variant/40 rounded-[2rem] p-8 shadow-xl shadow-primary/5 hover:shadow-2xl transition-all duration-500 flex flex-col h-full">
+<div class="absolute -top-6 left-8 w-14 h-14 bg-primary text-on-primary rounded-2xl flex items-center justify-center font-display text-2xl font-black shadow-lg shadow-primary/20 transform group-hover:rotate-6 transition-transform">
+                        C
+                    </div>
+<div class="mt-4">
+<h3 class="text-sm font-bold text-primary tracking-widest uppercase mb-2">Ambassador Mandate</h3>
+<h2 class="text-2xl font-display font-bold text-on-surface mb-6">Socio-Economic Transformation</h2>
+<div class="space-y-4">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary mt-1">groups_3</span>
+<div>
+<p class="text-on-surface font-semibold text-sm">Empowerment</p>
+<p class="text-on-surface-variant text-xs mt-1 leading-relaxed">Rural job creation, youth &amp; women focused economic participation.</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary mt-1">school</span>
+<div>
+<p class="text-on-surface font-semibold text-sm">Resilient Communities</p>
+<p class="text-on-surface-variant text-xs mt-1 leading-relaxed">Skills training and community-led development initiatives.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-12 overflow-hidden rounded-xl h-40 relative">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="A group of diverse, smiling Zimbabwean professionals and community workers in a bright, modern workshop space. They are collaboratively examining bamboo craft designs, showing a sense of empowerment and shared success. The atmosphere is optimistic and professional, reflecting high-quality socio-economic transformation and community resilience." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkNcJiXfi9VPdb88_9lcGEwpukvSrQMTMmL8cWNl8AhXzBauy3FrrJWKHDhpCxn3fiUL2ljfY-cOQIT9ePCV7cOMGmCZDsjjm-I6eUdIgCzkZFc_o3_NtQaJSBtNbQ9q6aAJ65HFumDxe4XRsNOuKDfdVaBMnq4JOJPB7ZWE1u6qzqtDGUsMziG1WzFsAppLj4t7x4ljC4PCWp3n-wWSkmsfylR61z31UO1BnXIaKMTh4QQrxfNvBLJaBHUtQ9m52SczkHmxNfCw"/>
+</div>
+</div>
+</div>
+<!-- Key Indicators Footer within Slide -->
+<div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4">
+<div class="bg-surface-container-high/50 p-6 rounded-2xl border border-outline-variant/30">
+<p class="text-on-surface-variant text-xs font-bold uppercase tracking-widest mb-1">Target Hectares</p>
+<p class="text-3xl font-display font-black text-primary">50k+</p>
+</div>
+<div class="bg-surface-container-high/50 p-6 rounded-2xl border border-outline-variant/30">
+<p class="text-on-surface-variant text-xs font-bold uppercase tracking-widest mb-1">Jobs Projected</p>
+<p class="text-3xl font-display font-black text-primary">25,000</p>
+</div>
+<div class="bg-surface-container-high/50 p-6 rounded-2xl border border-outline-variant/30">
+<p class="text-on-surface-variant text-xs font-bold uppercase tracking-widest mb-1">Carbon Offset</p>
+<p class="text-3xl font-display font-black text-primary">1.2m</p>
+<p class="text-[10px] text-on-surface-variant">Tons/Year</p>
+</div>
+<div class="bg-surface-container-high/50 p-6 rounded-2xl border border-outline-variant/30">
+<p class="text-on-surface-variant text-xs font-bold uppercase tracking-widest mb-1">Value Addition</p>
+<p class="text-3xl font-display font-black text-primary">300%</p>
+<p class="text-[10px] text-on-surface-variant">Margin Growth</p>
+</div>
+</div>
+</section>
+<!-- Footer (Authority Source: JSON) -->
+<footer class="bg-surface-container-highest dark:bg-surface-container-high full-width py-8 mt-auto border-t border-outline-variant">
+<div class="flex flex-col md:flex-row justify-between items-center px-12 w-full">
+<div class="flex flex-col md:flex-row items-center gap-6">
+<span class="font-display font-black text-on-surface dark:text-on-surface-variant text-lg">Bamboo Zimbabwe</span>
+<p class="font-body text-xs font-medium text-on-surface-variant/80">© 2024 Bamboo Zimbabwe Authority. All rights reserved.</p>
+</div>
+<div class="flex gap-6 mt-6 md:mt-0">
+<a class="font-body text-xs font-medium text-on-surface-variant/80 hover:text-primary transition-opacity" href="#">Privacy Policy</a>
+<a class="font-body text-xs font-medium text-on-surface-variant/80 hover:text-primary transition-opacity" href="#">Terms of Service</a>
+<a class="font-body text-xs font-medium text-on-surface-variant/80 hover:text-primary transition-opacity" href="#">Data Methodology</a>
+<a class="font-body text-xs font-medium text-on-surface-variant/80 hover:text-primary transition-opacity" href="#">Contact Secretariat</a>
+</div>
+</div>
+</footer>
+</main>
+<script>
+        // Micro-interactions
+        document.querySelectorAll('.group').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-8px)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body></html>
