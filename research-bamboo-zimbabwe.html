@@ -525,6 +525,68 @@
       .toc-inner { padding: 0 1.5rem; }
       .page-hero { padding: 8rem 1.5rem 3rem; }
       .use-grid { grid-template-columns: 1fr; }
+      .rpt-img-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── IMAGES ── */
+    .rpt-img-full {
+      width: 100%;
+      border-radius: 14px;
+      margin: 1.75rem 0;
+      display: block;
+      object-fit: cover;
+      box-shadow: 0 4px 24px rgba(10,46,26,0.12);
+    }
+
+    .rpt-img-hero {
+      width: 100%;
+      max-height: 420px;
+      border-radius: 14px;
+      margin: 1.75rem 0;
+      display: block;
+      object-fit: cover;
+      object-position: top;
+      box-shadow: 0 8px 32px rgba(10,46,26,0.16);
+    }
+
+    .rpt-img-caption {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      text-align: center;
+      margin-top: -1rem;
+      margin-bottom: 1.75rem;
+      font-style: italic;
+      line-height: 1.5;
+    }
+
+    .rpt-img-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin: 1.75rem 0;
+    }
+
+    .rpt-img-grid figure {
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .rpt-img-grid img {
+      width: 100%;
+      border-radius: 12px;
+      display: block;
+      object-fit: cover;
+      box-shadow: 0 4px 16px rgba(10,46,26,0.1);
+    }
+
+    .rpt-img-grid figcaption {
+      font-size: 0.74rem;
+      color: var(--text-muted);
+      text-align: center;
+      font-style: italic;
+      line-height: 1.45;
     }
 
     /* Reveal animation */
@@ -644,10 +706,19 @@
       <p>Zimbabwe hosts two confirmed indigenous bamboo species. Modern genetic analysis continues to shed light on bamboo taxonomy, with some authors suggesting both species should be reclassified under <em>Dendrocalamus</em>, a large Asian genus — though this reclassification has not yet been formally adopted.</p>
 
       <h3>Oxytenanthera abyssinica (A. Rich) Munro</h3>
+
+      <!-- FIELD PHOTO: O. abyssinica culms against sky -->
+      <img src="rpt_bamboo_culms.jpg" alt="Oxytenanthera abyssinica culms reaching toward the sky in the Honde Valley" class="rpt-img-hero" loading="lazy"/>
+      <p class="rpt-img-caption">Mature <em>Oxytenanthera abyssinica</em> culms — the characteristic sympodial clump habit with nodal branching clearly visible. Honde Valley, Zimbabwe.</p>
+
       <p>The primary and most widespread indigenous species in Zimbabwe, <em>O. abyssinica</em> has a natural distribution throughout tropical Africa — from Senegal east to Eritrea and south to Angola, Mozambique, and the northern reaches of South Africa. It is a lowland bamboo occurring from sea-level to 2,000 m altitude (primarily at 300–1,500 m), thriving in savanna woodland with annual rainfall above 800 mm and 3–7 dry months.</p>
       <p>A robust clump-forming bamboo, culms may reach up to 13 m tall with diameters of 5–10 cm when mature. <em>O. abyssinica</em> has a life cycle of between 14 and 21 years. It is sympodial — clump-forming and non-invasive — growing in dense clumps of 3 to over 80 stems, with clumps reaching up to 6 m in diameter. Its stems are widely used for construction (fencing, shelters, land reclamation) and are semi-solid when young and fully solid when older.</p>
       <p>The species occurs on soils from various parent rock types, but is associated with well-drained sites with reliable water access — particularly along rivers, drainage lines, termite mounds, and rocky slopes. Saline conditions are unfavourable. In the Honde Valley, an average density of approximately 2,000 stems per hectare was recorded in preliminary studies.</p>
       <p><em>O. abyssinica</em> can yield 14 to 28 tonnes of air-dried culms per hectare per year, with yield depending on the previous season's rainfall.</p>
+
+      <!-- MORPHOLOGY CARD -->
+      <img src="rpt_morphology.png" alt="O. abyssinica morphology — botanical description and close-up photograph of spikelet clusters" class="rpt-img-full" loading="lazy"/>
+      <p class="rpt-img-caption">Morphological detail of <em>O. abyssinica</em> — spikelet clusters, culm structure, and botanical description. Photograph by Mark Hyde from the Flora of Zimbabwe website.</p>
 
       <h3>Oreobambos buchwaldii K. Schum.</h3>
       <p>The second indigenous Zimbabwean species, <em>O. buchwaldii</em>, is less widely distributed than <em>O. abyssinica</em>. The delimitation between the two species continues to be studied by taxonomists, and both benefit from conservation and sector development attention.</p>
@@ -667,7 +738,27 @@
 
       <p>In the Honde Valley, bamboo is more robust and flourishes better than in the Great Dyke region. Two varieties were observed and corroborated by local residents who work with bamboo. Residents have historically used this natural resource for subsistence needs, and recently small commercial handicraft enterprises have been established and managed by STEP. Both men and women are involved, and small nurseries have already been set up in the area, though all bamboo is currently bush-harvested.</p>
 
+      <!-- SOUTHERN AFRICA + ZIMBABWE OUTLINE MAPS SIDE BY SIDE -->
+      <div class="rpt-img-grid">
+        <figure>
+          <img src="rpt_africa_map.png" alt="Hand-drawn map of southern Africa showing O. abyssinica distribution zones (S=Savanna, Bu=Bushveld, Be=Eastern highlands, F=Highveld, G=Lowveld, etc.)" loading="lazy"/>
+          <figcaption>Southern African distribution map of <em>O. abyssinica</em>. The species is concentrated in the S (savanna) and Be (eastern highlands) zones — corresponding to Zimbabwe's Honde Valley region.</figcaption>
+        </figure>
+        <figure>
+          <img src="rpt_zim_outline.png" alt="Outline map of Zimbabwe showing two confirmed bamboo location markers — Mavuradonha/Guruve in the north and Honde Valley in the east" loading="lazy"/>
+          <figcaption>Confirmed <em>O. abyssinica</em> locations in Zimbabwe: Mavuradonha/Guruve on the Great Dyke (north) and the Honde Valley, Mutasa District (east).</figcaption>
+        </figure>
+      </div>
+
       <p>Forests and woodlands cover 16,544,355 hectares (42.3%) of Zimbabwe's land area. Bamboo in Zimbabwe is found in the Honde Valley in stands comprised solely of bamboo, in mixed tree-bamboo stands, and in agricultural settings. It is also found on the Great Dyke. Bamboo does not yet play an important role nationwide as a source of income, but there is significant scope to develop it for peri-urban and rural communities across harvesting, processing, packaging, and marketing activities.</p>
+
+      <!-- SATELLITE MAP -->
+      <img src="rpt_zim_satellite.png" alt="Google satellite map of Zimbabwe showing bamboo survey location pins concentrated around Mutare, Chimanimani and the Honde Valley, with one marker near Kadoma" class="rpt-img-full" loading="lazy"/>
+      <p class="rpt-img-caption">Field survey locations across Zimbabwe. Pins are concentrated in the Mutare–Chimanimani–Honde Valley corridor (eastern highlands), with an additional record near Kadoma on the Great Dyke.</p>
+
+      <!-- HONDE VALLEY DENSITY MAP -->
+      <img src="rpt_honde_density.png" alt="Habitat suitability and density map of the Honde Valley region near Mutare, showing orange heat zone indicating high bamboo density in eastern highlands" class="rpt-img-full" loading="lazy"/>
+      <p class="rpt-img-caption">Honde Valley bamboo density map. The orange zone indicates the highest concentrations of <em>O. abyssinica</em> — the primary bamboo resource area in Zimbabwe. Green dots show individual specimen collection points used in the study.</p>
     </div>
 
     <div class="section-divider"></div>
@@ -678,6 +769,10 @@
       <h2>Utilization Potential for Zimbabwe</h2>
       <p>China is the world leader in bamboo utilisation, with bamboo-based panels and boards now substituting for hardwood products globally. In India, bamboo is known as "the poor man's timber." During the last 15–20 years, bamboo has developed as an exceptionally valuable and often superior substitute for wood across industrial applications.</p>
       <p>Kenya leads Africa in commercial bamboo use — primarily flower farming supports, fencing, and handicrafts. Zimbabwe has the biological foundation to develop a comparable sector. The following use-cases represent the most immediate opportunities:</p>
+
+      <!-- HANDICRAFTS PHOTO -->
+      <img src="rpt_handicrafts.jpg" alt="Bamboo woven products including baskets, cushion covers, hats and trays from Zimbabwe's Honde Valley — examples of small-scale commercial handicraft production" class="rpt-img-full" loading="lazy"/>
+      <p class="rpt-img-caption">Bamboo handicrafts produced in the Honde Valley — woven baskets, cushion covers, hats, and decorative items. Small-scale enterprises like these are already generating income for community members, with STEP supporting market development.</p>
 
       <div class="use-grid">
         <div class="use-card">
