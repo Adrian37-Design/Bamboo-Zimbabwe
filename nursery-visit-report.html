@@ -518,6 +518,63 @@
       .context-box { grid-template-columns: 1fr; }
     }
 
+    /* ── IMAGES ── */
+    .nrs-img {
+      width: 100%;
+      border-radius: 14px;
+      margin: 1.75rem 0;
+      display: block;
+      object-fit: cover;
+      box-shadow: 0 6px 28px rgba(10,46,26,0.13);
+    }
+
+    .nrs-img-caption {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      text-align: center;
+      margin-top: -1rem;
+      margin-bottom: 1.75rem;
+      font-style: italic;
+      line-height: 1.5;
+    }
+
+    .nrs-img-pair {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin: 1.75rem 0;
+    }
+
+    .nrs-img-pair figure {
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .nrs-img-pair img {
+      width: 100%;
+      height: 280px;
+      border-radius: 12px;
+      display: block;
+      object-fit: cover;
+      object-position: center;
+      box-shadow: 0 4px 16px rgba(10,46,26,0.1);
+    }
+
+    .nrs-img-pair figcaption {
+      font-size: 0.74rem;
+      color: var(--text-muted);
+      text-align: center;
+      font-style: italic;
+      line-height: 1.45;
+    }
+
+    @media (max-width: 600px) {
+      .nrs-img-pair { grid-template-columns: 1fr; }
+      .nrs-img-pair img { height: 220px; }
+    }
+
     /* Reveal */
     .reveal {
       opacity: 0;
@@ -668,6 +725,18 @@
         </li>
       </ul>
 
+      <!-- FIELD PHOTOS: sand bed + team with cuttings -->
+      <div class="nrs-img-pair">
+        <figure>
+          <img src="nrs_sand_bed.jpg" alt="FRC team member lifting plastic sheeting off the bamboo propagation sand bed at Barwick G Farm, revealing sandy rooting medium and wooden frame structure" loading="lazy"/>
+          <figcaption>The propagation and cuttings sand bed — a wooden-framed, plastic-lined structure used for initial rooting. FRC team member demonstrates the setup during the January 2020 visit.</figcaption>
+        </figure>
+        <figure>
+          <img src="nrs_team_cuttings.jpg" alt="FRC team and BZ representatives examining the brick-bordered bed of approximately 950 pocketed rooted bamboo cuttings at Barwick G Farm nursery" loading="lazy"/>
+          <figcaption>The full visiting team examining the brick-bordered pocketed cuttings bed — approximately 950 rooted bamboo cuttings at various stages of development, the core stock of the nursery.</figcaption>
+        </figure>
+      </div>
+
       <div class="pull-quote">
         <p>"Some cuttings appear dead at first impression — but after uprooting, you find them shooting. This is characteristic of bamboo propagation and shows the team's materials are alive and progressing."</p>
       </div>
@@ -684,6 +753,10 @@
       <p class="intro-lead">The FRC team's assessment was broadly positive — Bamboo Zimbabwe has achieved real propagation success, but the path to institutional impact requires documentation and replication.</p>
 
       <p>There is demonstrable success with propagation of the bamboo species specimens collected so far. Bamboo Zimbabwe has done good foundational work on the experiments. However, a critical gap remains: the experience and methodology has not been formally documented. Without documentation, successful techniques cannot be reliably replicated — either at the BZ nursery itself, or at other research stations across Zimbabwe.</p>
+
+      <!-- CLOSE-UP: researcher inspecting cuttings -->
+      <img src="nrs_cutting_closeup.jpg" alt="FRC researcher leaning over an open rooting bed to inspect individual bamboo branch cuttings planted in the ground, showing vigorous upright shoots emerging from dark soil" class="nrs-img" loading="lazy"/>
+      <p class="nrs-img-caption">Close-up inspection of an open rooting bed — branch cuttings planted vertically show vigorous upright shoots emerging from the soil. This demonstrates the propagation success the FRC team observed first-hand at the Barwick G Farm nursery.</p>
 
       <p>The FRC team identified a clear need for the nursery work to be formalised through collaboration with forestry researchers. This would allow the adoption of experimental designs that produce publishable, replicable results — converting field learning into institutional knowledge.</p>
 
