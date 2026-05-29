@@ -108,6 +108,16 @@
       -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,0.6) 0%, transparent 100%);
     }
 
+    /* ── BAMBOO CANVAS ── */
+    #bamboo-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
     .hero-content { position: relative; z-index: 1; max-width: 760px; }
 
     .hero-eyebrow {
@@ -649,6 +659,7 @@
 
 <!-- HERO -->
 <section class="page-hero">
+  <canvas id="bamboo-canvas" aria-hidden="true"></canvas>
   <div class="hero-content">
     <div class="hero-eyebrow">
       <svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4" fill="currentColor"/></svg>
@@ -993,6 +1004,224 @@
     });
   }, { rootMargin: '-20% 0px -70% 0px' });
   sections.forEach(s => tocObserver.observe(s));
+
+  // ─── BAMBOO LEAF CANVAS ANIMATION ───────────────────────────────────────
+  (function() {
+    const canvas = document.getElementById('bamboo-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+
+    // Resize canvas to match hero dimensions
+    function resize() {
+      const hero = canvas.parentElement;
+      canvas.width  = hero.offsetWidth;
+      canvas.height = hero.offsetHeight;
+    }
+    resize();
+    const ro = new ResizeObserver(resize);
+    ro.observe(canvas.parentElement);
+
+    // ── Bamboo stalks (subtle vertical silhouettes) ──
+    const STALK_COUNT = 7;
+    const stalks = Array.from({ length: STALK_COUNT }, (_, i) => ({
+      xRatio:  0.04 + i * 0.135 + (Math.random() - 0.5) * 0.06,
+      width:   0.8 + Math.random() * 2.2,
+      alpha:   0.025 + Math.random() * 0.04,
+      // node positions as fractions of hero height
+      nodes: Array.from({ length: 9 }, (_, j) => 0.04 + j * 0.11 + (Math.random() - 0.5) * 0.025)
+    }));
+
+    // ── Leaf class ──
+    class Leaf {
+      constructor(scattered) { this.spawn(scattered); }
+
+      spawn(scattered = false) {
+        const w = canvas.width, h = canvas.height;
+        this.x       = Math.random() * w;
+        this.y       = scattered ? Math.random() * h : -(40 + Math.random() * 250);
+        // Leaf geometry
+        this.len     = 10 + Math.random() * 28;          // half-length
+        this.wid     = this.len * (0.12 + Math.random() * 0.13); // half-width at widest
+        // Motion
+        this.vy      = 0.18 + Math.random() * 0.60;      // fall speed
+        this.vx      = (Math.random() - 0.5) * 0.30;     // horizontal drift
+        this.angle   = Math.random() * Math.PI * 2;       // initial rotation
+        this.aSpeed  = (Math.random() - 0.5) * 0.014;    // rotation speed
+        this.aFlutter = (Math.random() - 0.5) * 0.006;   // flutter amplitude
+        // Wind sway
+        this.sPhase  = Math.random() * Math.PI * 2;
+        this.sFreq   = 0.006 + Math.random() * 0.014;
+        this.sAmp    = 12 + Math.random() * 38;
+        // Appearance
+        this.alpha   = 0.055 + Math.random() * 0.21;
+        this.hue     = 118 + Math.random() * 28;          // 118-146° (green spectrum)
+        this.sat     = 38 + Math.random() * 42;           // saturation
+        this.lig     = 50 + Math.random() * 30;           // lightness
+        // Layer tags
+        this.layer   = 0; // set externally
+      }
+
+      // Draw a single bamboo leaf centred at origin, pointing up
+      _drawShape(len, wid) {
+        ctx.beginPath();
+        ctx.moveTo(0, -len);                               // top tip
+        ctx.bezierCurveTo(                                 // right curve
+           wid * 0.75, -len * 0.55,
+           wid * 1.0,  -len * 0.05,
+           wid * 0.15,  len * 0.12
+        );
+        ctx.bezierCurveTo(                                 // base merge → left curve
+          -wid * 0.15,  len * 0.12,
+          -wid * 1.0,  -len * 0.05,
+          -wid * 0.75, -len * 0.55
+        );
+        ctx.closePath();
+      }
+
+      draw(t) {
+        const sway  = Math.sin(this.sPhase + t * this.sFreq) * this.sAmp;
+        const drawX = this.x + sway;
+        // Parallax: far leaves shift less with cursor
+        const px = (window._mx || 0) * (this.layer === 0 ? 0.004 : this.layer === 1 ? 0.010 : 0.018);
+        const py = (window._my || 0) * (this.layer === 0 ? 0.002 : this.layer === 1 ? 0.006 : 0.012);
+
+        ctx.save();
+        ctx.translate(drawX + px, this.y + py);
+        ctx.rotate(this.angle);
+        ctx.globalAlpha = this.alpha;
+
+        // Gradient fill — tip lighter, base darker
+        const grd = ctx.createLinearGradient(0, -this.len, 0, this.len * 0.15);
+        grd.addColorStop(0,   `hsla(${this.hue}, ${this.sat}%, ${Math.min(this.lig + 18, 88)}%, 1)`);
+        grd.addColorStop(0.45,`hsla(${this.hue}, ${this.sat}%, ${this.lig}%, 1)`);
+        grd.addColorStop(1,   `hsla(${this.hue}, ${this.sat}%, ${Math.max(this.lig - 14, 22)}%, 1)`);
+        ctx.fillStyle = grd;
+
+        this._drawShape(this.len, this.wid);
+        ctx.fill();
+
+        // Midrib vein
+        ctx.beginPath();
+        ctx.moveTo(0, -this.len);
+        ctx.quadraticCurveTo(this.wid * 0.18, -this.len * 0.2, this.wid * 0.12, this.len * 0.12);
+        ctx.strokeStyle = `hsla(${this.hue}, ${this.sat}%, ${Math.min(this.lig + 30, 95)}%, 0.28)`;
+        ctx.lineWidth   = 0.55;
+        ctx.stroke();
+
+        // 3 lateral veins (near, mid, far from base)
+        const vPairs = [[-0.55, 0.48], [-0.3, 0.22], [-0.05, -0.05]];
+        vPairs.forEach(([yFrac, xFrac]) => {
+          const vy = yFrac * this.len, vx = xFrac * this.wid;
+          ctx.beginPath();
+          ctx.moveTo(0, vy);
+          ctx.quadraticCurveTo(vx * 0.55, vy - this.len * 0.06, vx, vy - this.len * 0.14);
+          ctx.strokeStyle = `hsla(${this.hue}, ${this.sat}%, ${Math.min(this.lig + 22, 90)}%, 0.16)`;
+          ctx.lineWidth   = 0.4;
+          ctx.stroke();
+          // Mirror
+          ctx.beginPath();
+          ctx.moveTo(0, vy);
+          ctx.quadraticCurveTo(-vx * 0.55, vy - this.len * 0.06, -vx, vy - this.len * 0.14);
+          ctx.stroke();
+        });
+
+        ctx.restore();
+      }
+
+      update(t) {
+        this.y     += this.vy;
+        this.x     += this.vx;
+        this.angle += this.aSpeed + Math.sin(t * this.sFreq * 2.3 + this.sPhase) * this.aFlutter;
+        const w = canvas.width, h = canvas.height;
+        if (this.y > h + 80)       this.spawn(false);
+        if (this.x < -120)         this.x = w + 60;
+        if (this.x > w + 120)      this.x = -60;
+      }
+    }
+
+    // ── Build leaf pool across 3 depth layers ──
+    function makeLeaves(n, layerIdx, scaleF, alphaF, vyF) {
+      return Array.from({ length: n }, () => {
+        const l = new Leaf(true);
+        l.len    *= scaleF;
+        l.wid    *= scaleF;
+        l.alpha  *= alphaF;
+        l.vy     *= vyF;
+        l.sAmp   *= scaleF;
+        l.layer   = layerIdx;
+        return l;
+      });
+    }
+    const leaves = [
+      ...makeLeaves(28, 0, 0.42, 0.45, 0.50),  // FAR  — tiny, wispy
+      ...makeLeaves(28, 1, 1.00, 1.00, 1.00),  // MID  — normal
+      ...makeLeaves(14, 2, 1.72, 1.30, 0.75),  // NEAR — large, bold, slower
+    ];
+
+    // ── Draw bamboo stalks ──
+    function drawStalks() {
+      const w = canvas.width, h = canvas.height;
+      stalks.forEach(s => {
+        const sx = s.xRatio * w;
+        ctx.save();
+        ctx.globalAlpha = s.alpha;
+        // Main culm
+        ctx.beginPath();
+        ctx.moveTo(sx, 0);
+        ctx.lineTo(sx, h);
+        ctx.strokeStyle = 'rgba(93,185,124,1)';
+        ctx.lineWidth   = s.width;
+        ctx.stroke();
+        // Node rings
+        s.nodes.forEach(ny => {
+          const y = ny * h;
+          ctx.beginPath();
+          ctx.moveTo(sx - s.width * 3.5, y);
+          ctx.lineTo(sx + s.width * 3.5, y);
+          ctx.lineWidth = s.width * 0.7;
+          ctx.stroke();
+        });
+        ctx.restore();
+      });
+    }
+
+    // ── Vignette at bottom to blend hero into page body ──
+    function drawVignette() {
+      const w = canvas.width, h = canvas.height;
+      const g = ctx.createLinearGradient(0, h * 0.55, 0, h);
+      g.addColorStop(0, 'rgba(10,46,26,0)');
+      g.addColorStop(1, 'rgba(10,46,26,0.45)');
+      ctx.fillStyle = g;
+      ctx.fillRect(0, 0, w, h);
+    }
+
+    // ── Mouse parallax ──
+    window._mx = 0; window._my = 0;
+    canvas.parentElement.addEventListener('mousemove', e => {
+      const r = canvas.getBoundingClientRect();
+      window._mx = e.clientX - r.left - canvas.width  * 0.5;
+      window._my = e.clientY - r.top  - canvas.height * 0.5;
+    });
+    canvas.parentElement.addEventListener('mouseleave', () => {
+      window._mx = 0; window._my = 0;
+    });
+
+    // ── Render loop ──
+    let frame = 0;
+    function tick() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      drawStalks();
+      // Far → Near order
+      for (let i = 0; i < leaves.length; i++) {
+        leaves[i].update(frame);
+        leaves[i].draw(frame);
+      }
+      drawVignette();
+      frame++;
+      requestAnimationFrame(tick);
+    }
+    tick();
+  })();
 </script>
 </body>
 </html>
