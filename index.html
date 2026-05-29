@@ -352,12 +352,20 @@
       margin-bottom: 5rem;
     }
 
+    /* ============ LIQUID GLASS BUTTONS ============ */
+
     .btn-primary {
+      position: relative;
       display: inline-flex;
       align-items: center;
       gap: 0.6rem;
-      background: var(--lime);
-      color: var(--forest);
+      /* Glass fill: lime tint + frosted translucency */
+      background: linear-gradient(
+        145deg,
+        rgba(93, 185, 124, 0.55) 0%,
+        rgba(45, 138, 78, 0.45) 100%
+      );
+      color: white;
       font-family: 'Outfit', sans-serif;
       font-weight: 700;
       font-size: 0.9rem;
@@ -365,40 +373,192 @@
       padding: 0.9rem 2rem;
       border-radius: 100px;
       text-decoration: none;
-      border: none;
       cursor: pointer;
-      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      overflow: hidden;
+      /* Specular edge — bright top, subtle bottom */
+      border-top: 1px solid rgba(255, 255, 255, 0.55);
+      border-left: 1px solid rgba(255, 255, 255, 0.3);
+      border-right: 1px solid rgba(255, 255, 255, 0.1);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      /* Frosted backdrop */
+      backdrop-filter: blur(16px) saturate(180%);
+      -webkit-backdrop-filter: blur(16px) saturate(180%);
+      /* Depth glow */
+      box-shadow:
+        0 2px 0 rgba(255,255,255,0.25) inset,
+        0 -1px 0 rgba(0,0,0,0.12) inset,
+        0 8px 32px rgba(45, 138, 78, 0.25),
+        0 1px 2px rgba(0,0,0,0.15);
+      transition:
+        transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+        box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+        background 0.3s ease;
+    }
+
+    /* Shimmer sweep pseudo-element */
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: linear-gradient(
+        105deg,
+        transparent 20%,
+        rgba(255, 255, 255, 0.35) 50%,
+        transparent 80%
+      );
+      transform: translateX(-100%);
+      transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+    }
+
+    /* Top specular highlight layer */
+    .btn-primary::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 50%;
+      border-radius: 100px 100px 60% 60% / 60px 60px 40px 40px;
+      background: linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.25) 0%,
+        transparent 100%
+      );
+      pointer-events: none;
     }
 
     .btn-primary:hover {
-      background: white;
-      transform: translateY(-2px);
-      box-shadow: 0 12px 40px rgba(93,185,124,0.35);
+      transform: translateY(-3px) scale(1.02);
+      box-shadow:
+        0 2px 0 rgba(255,255,255,0.3) inset,
+        0 -1px 0 rgba(0,0,0,0.1) inset,
+        0 16px 48px rgba(45, 138, 78, 0.4),
+        0 4px 12px rgba(0,0,0,0.15);
+      background: linear-gradient(
+        145deg,
+        rgba(93, 185, 124, 0.7) 0%,
+        rgba(45, 138, 78, 0.6) 100%
+      );
     }
 
-    .btn-primary:active { transform: translateY(0) scale(0.98); }
+    .btn-primary:hover::before {
+      transform: translateX(100%);
+    }
 
+    .btn-primary:active {
+      transform: translateY(0) scale(0.97);
+      box-shadow:
+        0 1px 0 rgba(255,255,255,0.15) inset,
+        0 -1px 0 rgba(0,0,0,0.15) inset,
+        0 4px 16px rgba(45, 138, 78, 0.2),
+        0 1px 3px rgba(0,0,0,0.2);
+    }
+
+    /* Override: dark-bg sections use forest-tinted glass */
+    .btn-primary[style*="var(--forest)"] {
+      background: linear-gradient(
+        145deg,
+        rgba(10, 46, 26, 0.7) 0%,
+        rgba(15, 56, 35, 0.6) 100%
+      ) !important;
+      color: white !important;
+      box-shadow:
+        0 2px 0 rgba(255,255,255,0.15) inset,
+        0 -1px 0 rgba(0,0,0,0.2) inset,
+        0 8px 32px rgba(0,0,0,0.25),
+        0 1px 2px rgba(0,0,0,0.2);
+    }
+
+    .btn-primary[style*="var(--forest)"]:hover {
+      background: linear-gradient(
+        145deg,
+        rgba(10, 46, 26, 0.85) 0%,
+        rgba(15, 56, 35, 0.75) 100%
+      ) !important;
+      box-shadow:
+        0 2px 0 rgba(255,255,255,0.2) inset,
+        0 -1px 0 rgba(0,0,0,0.15) inset,
+        0 16px 48px rgba(0,0,0,0.3),
+        0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    /* ---- Ghost button: pure liquid glass ---- */
     .btn-ghost {
+      position: relative;
       display: inline-flex;
       align-items: center;
       gap: 0.6rem;
-      color: rgba(255,255,255,0.85);
+      color: rgba(255, 255, 255, 0.9);
       font-family: 'Outfit', sans-serif;
       font-weight: 600;
       font-size: 0.9rem;
       padding: 0.9rem 2rem;
       border-radius: 100px;
       text-decoration: none;
-      border: 1px solid rgba(255,255,255,0.2);
       cursor: pointer;
-      background: transparent;
-      transition: background 0.2s, border-color 0.2s, color 0.2s;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.08);
+      border-top: 1px solid rgba(255, 255, 255, 0.4);
+      border-left: 1px solid rgba(255, 255, 255, 0.2);
+      border-right: 1px solid rgba(255, 255, 255, 0.08);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(16px) saturate(160%);
+      -webkit-backdrop-filter: blur(16px) saturate(160%);
+      box-shadow:
+        0 2px 0 rgba(255,255,255,0.15) inset,
+        0 8px 24px rgba(0,0,0,0.1);
+      transition:
+        transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+        box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+        background 0.3s ease,
+        color 0.2s ease;
+    }
+
+    .btn-ghost::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: linear-gradient(
+        105deg,
+        transparent 20%,
+        rgba(255, 255, 255, 0.2) 50%,
+        transparent 80%
+      );
+      transform: translateX(-100%);
+      transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+    }
+
+    .btn-ghost::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 50%;
+      border-radius: 100px 100px 60% 60% / 60px 60px 40px 40px;
+      background: linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.15) 0%,
+        transparent 100%
+      );
+      pointer-events: none;
     }
 
     .btn-ghost:hover {
-      background: rgba(255,255,255,0.08);
-      border-color: rgba(255,255,255,0.4);
       color: white;
+      background: rgba(255, 255, 255, 0.15);
+      transform: translateY(-3px) scale(1.02);
+      box-shadow:
+        0 2px 0 rgba(255,255,255,0.25) inset,
+        0 16px 40px rgba(0,0,0,0.15);
+    }
+
+    .btn-ghost:hover::before {
+      transform: translateX(100%);
+    }
+
+    .btn-ghost:active {
+      transform: translateY(0) scale(0.97);
     }
 
     /* Hero stat strip */
@@ -1866,7 +2026,7 @@
           <label class="form-label">Message</label>
           <textarea class="form-input" placeholder="Tell us how you'd like to collaborate..."></textarea>
         </div>
-        <button type="submit" class="btn-primary" style="background:var(--lime); color:var(--forest); width:100%; justify-content:center;">
+        <button type="submit" class="btn-primary" style="width:100%; justify-content:center;">
           Send Message
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
         </button>
